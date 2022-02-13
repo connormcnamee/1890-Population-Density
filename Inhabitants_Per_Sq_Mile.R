@@ -15,7 +15,7 @@ gannett <- function() {
         plot.title = element_text(size = 10, family = "Puritan", hjust = .5, vjust = -3),
         axis.title.y = element_text(hjust = .5),
         axis.ticks = element_blank(),
-        axis.text.y = element_text(margin = margin(l = 20, r = -20.5)),
+        axis.text.y = element_text(size = 7.5, margin = margin(l = 20, r = -20.5)),
         panel.grid.minor.x = element_blank(),
         panel.grid.major.y = element_blank(),
         aspect.ratio = 1.2,
@@ -36,11 +36,11 @@ ggplot(Mod_Total_Population) +
   theme_linedraw() +
   coord_cartesian(xlim = c(-.5,20.85), ylim = c(1, 11.15)) +
   theme(axis.title = element_text(size = 9, family = "serif"),
-        axis.text = element_text(size = 7, family = "serif"),
+        axis.text = element_text(size = 7.5, family = "serif"),
         plot.title = element_text(size = 13, family = "Puritan", hjust = .5, vjust = -3),
         axis.title.y = element_text(hjust = .5),
         axis.ticks = element_blank(),
-        axis.text.y = element_text(margin = margin(r = -20.5)),
+        axis.text.y = element_text(size = 7.5, vjust = .75, margin = margin(r = -20.5)),
         axis.text.x.top = element_text(margin = margin(b = -13, t = 15)),
         panel.grid.minor.x = element_blank(),
         panel.grid.major.y = element_blank(),

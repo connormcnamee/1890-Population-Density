@@ -1,11 +1,17 @@
 library(tidyverse)
 Total_Population <- read_csv("Total_Population.csv")
 
-Urban_Pop_Graph <- Total_Population %>% 
-  mutate(Urban_Pop = `Urban Pop.` / 1000000,
-         New_censuses = as.character(Censuses),
-         New_population = Population / 1000000) %>% 
-  select(Urban_Pop, New_censuses, New_population)
+Censuses <- c("1790", "1800", "1810", "1820", "1830", "1840", "1850", "1860", "1870", "1880", "1890")
+Population <- c(3929214,5308483,7239881,9633822,12866020,17069453,23191876,31443321,38558371,50155783,62622250)
+Density <- c(4.75,6.41,3.62,4.82,6.25,8.29,7.78,10.39,12.74,16.58,20.70)
+Urban_Pop <- c(119748,201806,315653,467252,856512,1449569,2896539,4645000,7538000,10794000,17446000)
+Population_Density <- tibble(Censuses,Population,Density,Urban_Pop)
+
+Urban_Pop_Graph <- Population_Density %>% 
+  mutate(Urban_Pop = Urban_Pop / 1000000,
+         Censuses = as.character(Censuses),
+         Population = Population / 1000000) %>% 
+  select(Urban_Pop, Censuses, Population)
 
 gannett <- function() {
   theme(axis.title = element_text(size = 6, family = "serif"),
@@ -25,9 +31,9 @@ gannett <- function() {
 
 ggplot(Urban_Pop_Graph) +
   # Total population
-  geom_col(aes(y = New_censuses, x = New_population), width = .6, color = "black", fill = "white", alpha = 0) +
+  geom_col(aes(y = Censuses, x = Population), width = .6, color = "black", fill = "white", alpha = 0) +
   # Urban Population overlaid on total population
-  geom_col(aes(y = New_censuses, x = Urban_Pop), width = .6, fill = "#1a1e19") +
+  geom_col(aes(y = Censuses, x = Urban_Pop), width = .6, fill = "#1a1e19") +
   labs(x = "[Millions of Inhabitants]", y = "", title = "Urban and Total Population at Each Census: 1790 to 1890",
        subtitle = "   The total length of each bar represents the aggregate population, while the black portion of each bar indicates the urban element--that is, the population contained in cities \nhaving 8000 inhabitants or more.") +
   scale_y_discrete(limits = rev) +

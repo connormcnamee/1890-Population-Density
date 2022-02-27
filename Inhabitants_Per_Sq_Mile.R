@@ -26,6 +26,7 @@ Mod_Total_Population <- Population_Density %>%
   mutate(New_censuses = as.character(Censuses)) %>% 
   select(New_censuses, Density)
 
+png("Pop-Density.png",width=500,height=550)
 ggplot(Mod_Total_Population) +
   annotate("segment", x = seq(0,20,2), xend = seq(0,20,2), y = 0, yend = 11.38) +
   annotate("segment", x = -2, xend = 22, y = 11.38, yend = 11.38) +
@@ -40,8 +41,8 @@ ggplot(Mod_Total_Population) +
         plot.title = element_text(size = 13, family = "Puritan", hjust = .5, vjust = -3),
         axis.title.y = element_text(hjust = .5),
         axis.ticks = element_blank(),
-        axis.text.y = element_text(size = 7.5, vjust = .75, margin = margin(r = -20.5)),
-        axis.text.x.top = element_text(margin = margin(b = -13, t = 15)),
+        axis.text.y = element_text(size = 7.5, vjust = .75, margin = margin(r = -26)),
+        axis.text.x.top = element_text(margin = margin(b = -16.5, t = 15)),
         panel.grid.minor.x = element_blank(),
         panel.grid.major.y = element_blank(),
         panel.grid.minor.y = element_blank(),
@@ -49,5 +50,4 @@ ggplot(Mod_Total_Population) +
         aspect.ratio = 1.2,
         panel.border = element_rect(fill = NA, size = 1.05)
   )
-  
-
+dev.off()

@@ -112,24 +112,24 @@ New_Pop_Graph <- New_Urban_Pop %>%
          Population = total / 1000000) %>% 
   select(Urban_Pop, Censuses, Population)
 
-png("Urban-1910-1940.png",width=1000,height=500)
+png("Urban-1910-1940.png",width=700,height=280)
 ggplot(New_Pop_Graph) +
   # Total population
-  geom_col(aes(y = Censuses, x = Population), width = .6, color = "black", fill = "white", alpha = 0) +
+  geom_col(aes(y = Censuses, x = Population), width = .4, color = "black", fill = "white", alpha = 0) +
   # Urban Population overlaid on total population
-  geom_col(aes(y = Censuses, x = Urban_Pop), width = .6, fill = "black") +
+  geom_col(aes(y = Censuses, x = Urban_Pop), width = .4, fill = "black") +
   labs(x = "[Millions of Inhabitants]", y = "", title = "Urban and Total Population at Each Census: 1910 to 1940",
-       subtitle = "   The total length of each bar represents the aggregate population, while the black portion of each bar indicates the urban element--that is, the population contained in cities \nhaving 2500 inhabitants or more.") +
+       caption = "   The total length of each bar represents the aggregate population, while the black portion of each bar indicates the urban element--that is, the population contained in cities \nhaving 2500 inhabitants or more.") +
   scale_y_discrete(limits = rev) +
   # Add box to go around the census years
-  coord_cartesian(xlim = c(.4, 250)) +
-  scale_x_continuous(breaks = seq(0,60, by = 10), position = "top", limits = c(0,70)) +
+  coord_cartesian(xlim = c(0, 130), ylim = c()) +
+  scale_x_continuous(breaks = seq(0,130, by = 10), position = "top", limits = c(0,150)) +
   theme_linedraw() +
   theme(axis.title = element_text(size = 6, family = "serif"),
-        plot.title = element_text(size = 8, family = "Puritan", hjust = .5, vjust = -10),
-        plot.subtitle = element_text(size = 8.5, family = "Puritan", vjust = -119, hjust = .001),
+        plot.title = element_text(size = 8, family = "Puritan", hjust = .5, vjust = -1.5),
+        plot.caption = element_text(size = 7, family = "Puritan", vjust = 0, hjust = .001),
         axis.title.y = element_text(hjust = .5),
-        axis.text.y = element_text(size = 7, margin = margin(l = 20, r = -29)),
+        axis.text.y = element_text(size = 7, margin = margin(l = 20, r = -27)),
         axis.text.x = element_text(size = 6),
         axis.ticks = element_blank(),
         panel.grid.minor.x = element_blank(),
@@ -139,4 +139,3 @@ ggplot(New_Pop_Graph) +
         panel.border = element_rect(fill = NA, size = 1.25)
   ) 
 dev.off()
-
